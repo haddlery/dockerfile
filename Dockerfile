@@ -1,16 +1,25 @@
 # Pull base image.
 FROM ubuntu:14.04
+
+MAINTAINER Ismail CHAIDA <chaida.ismail@gmail.com>
+
+ENV DEBIAN_FRONTEND noninteractive
  
 # Install dev tools: jdk, git etc...
-RUN apt-get update
+RUN apt-get update -y
 # Fix: add-apt-repository command not found
 RUN apt-get install software-properties-common -y
+RUN apt-get install python-software-properties -y
 
 RUN add-apt-repository ppa:webupd8team/java -y
-RUN apt-get update
+RUN apt-get update -y
 
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 RUN apt-get install -y oracle-java8-installer
+
+RUN apt-get update -y
+
+RUN oracle-java8-set-default
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /var/cache/oracle-jdk8-installer
