@@ -23,7 +23,7 @@ RUN apt-get update -y
 RUN rm -rf /var/lib/apt/lists/*
 RUN rm -rf /var/cache/oracle-jdk8-installer
 
-RUN apt-get install -y git-core wget
+RUN apt-get -y install build-essential unzip curl git
  
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
